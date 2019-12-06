@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ReadFromFile {
-    final static Logger LOGGER = Logger.getLogger(ReadFromFile.class);
+public class ReadFile {
+    final static Logger LOGGER = Logger.getLogger(ReadFile.class);
 
     private List<PointOfSale> pointOfSaleList = new ArrayList<>();
     private File file;
 
 
-    public ReadFromFile(File file){
+    public ReadFile(File file){
         this.file = file;
         readData();
     }

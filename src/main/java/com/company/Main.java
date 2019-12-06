@@ -4,7 +4,7 @@ package com.company;
 import com.company.domain.Payment;
 import com.company.domain.PointOfSale;
 import com.company.dto.PaymentsOfPointSaleDTO;
-import com.company.nio.ReadFromFile;
+import com.company.nio.ReadFile;
 import com.company.nio.WriteToFile;
 import com.company.utils.Utils;
 import org.apache.log4j.Logger;
@@ -32,18 +32,17 @@ public class Main {
                     " 3 argument: outputfile" );
             return;
         }
-
         File file  =  new File(args[0]);
-        ReadFromFile readFromFile = new ReadFromFile(file);
+        ReadFile readFile = new ReadFile(file);
         List<PaymentsOfPointSaleDTO> paymentsOfPointSale =  new ArrayList<>();
+
         for(int i = 0; i < Integer.valueOf(args[1]) ;i ++){
             Payment payment = new Payment(Utils.generateSum(),
                     Utils.generateUUID(),
                     new Date(Utils.genereateDate()));
-            PointOfSale pointOfSale = new PointOfSale(readFromFile.getRandomIDPointOfSales());
+            PointOfSale pointOfSale = new PointOfSale(readFile.getRandomIDPointOfSales());
             paymentsOfPointSale.add(new PaymentsOfPointSaleDTO(payment,pointOfSale));
         }
-
     }
 
 }

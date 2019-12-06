@@ -1,8 +1,9 @@
 package com.company.utils;
 
-import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
+import com.sun.javafx.binding.StringFormatter;
+
+
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Utils {
@@ -23,8 +24,14 @@ public class Utils {
     }
 
     public static String convertDate(Date date){
-        return date.getDay() + "." + date.getMonth() + ". " + date.getYear() + " "
-                + date.getHours() + ":" + date.getMinutes();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return String.format("%s.%s.%s %s:%s",
+                calendar.get(Calendar.DATE),
+                calendar.get(Calendar.MONDAY) +1,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE));
     }
 
 }
