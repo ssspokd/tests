@@ -7,6 +7,13 @@ public class Payment {
     private float sumOperation;
     private String uuidOperaions;
     private Date dateOperation;
+
+
+    public Payment(float sumOperation, String uuidOperaions, Date dateOperation) {
+        this.sumOperation = sumOperation;
+        this.uuidOperaions = uuidOperaions;
+        this.dateOperation = dateOperation;
+    }
     public  float getSumOperation() {
         return sumOperation;
     }
@@ -14,11 +21,6 @@ public class Payment {
         this.sumOperation = sumOperation;
     }
 
-    public Payment(float sumOperation, String uuidOperaions, Date dateOperation) {
-        this.sumOperation = sumOperation;
-        this.uuidOperaions = uuidOperaions;
-        this.dateOperation = dateOperation;
-    }
 
     public String getUuidOperaions() {
         return uuidOperaions;
