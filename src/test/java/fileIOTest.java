@@ -24,6 +24,8 @@ public class fileIOTest {
         pointOfSaleList = new ArrayList<>();
     }
 
+
+
     @Test
     public void readFromFile() {
         try (FileReader reader = new FileReader(file);

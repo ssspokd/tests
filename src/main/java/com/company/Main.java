@@ -1,7 +1,10 @@
 package com.company;
 
 
+import com.company.nio.ReadFromFile;
 import org.apache.log4j.Logger;
+
+import java.io.File;
 
 public class Main {
 
@@ -14,9 +17,13 @@ public class Main {
     }
 
     private void runTask1(String[] args) {
-        if(args.length <3){
+        if(args.length <1){
             LOGGER.error("missing count arguments");
+            return;
         }
+        File file  =  new File(args[0]);
+        ReadFromFile readFromFile = new ReadFromFile(file);
+        LOGGER.debug(readFromFile.getRandomIDPointOfSales());
     }
 
 
