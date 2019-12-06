@@ -1,9 +1,8 @@
 package com.company.domain;
 
 public class PointOfSale {
-    private String IdPointOfSale;
 
-    public  PointOfSale(){}
+    private String IdPointOfSale;
 
     public PointOfSale(String idPointOfSale) {
         IdPointOfSale = idPointOfSale;
