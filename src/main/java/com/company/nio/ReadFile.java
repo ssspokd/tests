@@ -34,12 +34,6 @@ public class ReadFile {
         }
     }
 
-    public void print(){
-        for(PointOfSale pointOfSale : pointOfSaleList){
-            LOGGER.debug(pointOfSale.getIdPointOfSale());
-        }
-    }
-
     public String getRandomIDPointOfSales(){
         return pointOfSaleList.get(new Random().nextInt(pointOfSaleList.size())).getIdPointOfSale();
     }

@@ -19,12 +19,6 @@ public class Main {
     final static Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
-	// write your code here
-        Main main = new Main();
-        main.runTask1(args);
-    }
-
-    private void runTask1(String[] args) {
         if(args.length  != 3){
             LOGGER.error("missing count arguments, only 3\n " +
                     "1 argument: input file\n " +
@@ -32,17 +26,23 @@ public class Main {
                     " 3 argument: outputfile" );
             return;
         }
-        File file  =  new File(args[0]);
+	// write your code here
+        Main main = new Main();
+        main.runTask1(args[0],Integer.valueOf(args[1]),args[2]);
+    }
+
+    private void runTask1(String nameFileInput,int countOperations,String nameFileOutput) {
+        File file  =  new File(nameFileInput);
         ReadFile readFile = new ReadFile(file);
         List<PaymentsOfPointSaleDTO> paymentsOfPointSale =  new ArrayList<>();
-
-        for(int i = 0; i < Integer.valueOf(args[1]) ;i ++){
+        for(int i = 0; i < countOperations ;i ++){
             Payment payment = new Payment(Utils.generateSum(),
                     Utils.generateUUID(),
                     new Date(Utils.genereateDate()));
             PointOfSale pointOfSale = new PointOfSale(readFile.getRandomIDPointOfSales());
             paymentsOfPointSale.add(new PaymentsOfPointSaleDTO(payment,pointOfSale));
         }
+        WriteToFile.writeStreamToFile(nameFileOutput, paymentsOfPointSale);
     }
 
 }
