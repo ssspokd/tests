@@ -14,9 +14,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Main {
+public class MainTest1 {
 
-    final static Logger LOGGER = Logger.getLogger(Main.class);
+
+    final static Logger LOGGER = Logger.getLogger(MainTest1.class);
 
     public static void main(String[] args) {
         if(args.length  != 3){
@@ -27,8 +28,8 @@ public class Main {
             return;
         }
 	// write your code here
-        Main main = new Main();
-        main.runTask1(args[0],Integer.valueOf(args[1]),args[2]);
+        MainTest1 mainTest1 = new MainTest1();
+        mainTest1.runTask1(args[0],Integer.valueOf(args[1]),args[2]);
     }
 
     private void runTask1(String nameFileInput,int countOperations,String nameFileOutput) {
@@ -42,7 +43,7 @@ public class Main {
             PointOfSale pointOfSale = new PointOfSale(readFile.getRandomIDPointOfSales());
             paymentsOfPointSale.add(new PaymentsOfPointSaleDTO(payment,pointOfSale));
         }
-        WriteToFile.writeStreamToFile(nameFileOutput, paymentsOfPointSale);
+        new WriteToFile().writeStreamToFile(nameFileOutput, paymentsOfPointSale);
     }
 
 }

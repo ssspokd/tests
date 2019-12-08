@@ -4,9 +4,12 @@ import com.company.domain.PointOfSale;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class ReadFile {
     final static Logger LOGGER = Logger.getLogger(ReadFile.class);
@@ -17,7 +20,7 @@ public class ReadFile {
 
     public ReadFile(File file){
         this.file = file;
-        readData();
+        readFileStream();
     }
 
     private void readData(){
@@ -28,11 +31,25 @@ public class ReadFile {
                 pointOfSaleList.add(new PointOfSale(line));
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
+
+    private  void  readFileStream(){
+        Path path =  file.toPath();
+        Stream<String> lineStream = Stream.generate(() -> "");
+        try
+        {
+            lineStream = Files.lines(path);
+            lineStream.forEach(s -> pointOfSaleList.add(new PointOfSale(s)));
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
+
+
 
     public String getRandomIDPointOfSales(){
         return pointOfSaleList.get(new Random().nextInt(pointOfSaleList.size())).getIdPointOfSale();

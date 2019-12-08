@@ -12,14 +12,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToLongFunction;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
 
 public class statsTest {
 
     private List<PaymentsOfPointSaleDTO> paymentsOfPointSaleDTO;
     private  List<PaymentStats> paymentStatsList;
     private  File file;
-    private InputStreamReader inputStreamReader;
 
 
     @BeforeEach
@@ -27,30 +33,22 @@ public class statsTest {
         paymentStatsList =  new ArrayList<>();
         paymentsOfPointSaleDTO = new ArrayList<>();
         file = new File("e:/file1.txt");
-        InputStream inputStream = null;
-        try {
-            inputStream =  new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        inputStreamReader =  new InputStreamReader(inputStream);
     }
 
     @Test
     public void ReadDataFromFile() throws IOException {
         Path path =  file.toPath();
         try (Stream<String> lineStream = Files.lines(path)) {
-            lineStream.forEach(this::initPaymentsOfStat);
-            Stream<PaymentStats> statsStream = paymentStatsList.stream();
-            sortStremByData(statsStream);
-        }
-        catch (IOException ignored) {
-        }
-    }
+            lineStream.forEach(this::initPaymentsOfPointSaleDTO);
 
-    private void sortStremByData(Stream<PaymentStats> stream){
-        stream.sorted((e1, e2) -> e2.getDate().compareTo(e1.getDate()));
+            Map<Date,Double>  maps = paymentsOfPointSaleDTO.stream()
+                    .collect(Collectors.groupingBy(paymentsOfPointSaleDTO -> paymentsOfPointSaleDTO.getPayment().getDateOperation(),
+                            Collectors.summingDouble(value -> value.getPayment().getSumOperation())));
 
+            Map<String,Double>  maps2 = paymentsOfPointSaleDTO.stream()
+                    .collect(Collectors.groupingBy(paymentsOfPointSaleDTO -> paymentsOfPointSaleDTO.getPointOfSale().getIdPointOfSale(),
+                            Collectors.summingDouble(value -> value.getPayment().getSumOperation())));
+        }
     }
 
     private void initPaymentsOfStat(String s) {

@@ -44,4 +44,14 @@ public class PaymentStats {
     public void setIdPointofSale(String idPointofSale) {
         this.idPointofSale = idPointofSale;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentStats{" +
+                "date=" + date +
+                ", summ=" + summ +
+                ", uid='" + uid + '\'' +
+                ", idPointofSale='" + idPointofSale + '\'' +
+                '}';
+    }
 }

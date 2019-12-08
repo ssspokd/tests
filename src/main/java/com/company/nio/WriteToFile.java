@@ -1,11 +1,14 @@
 package com.company.nio;
 
+import com.company.MainTest1;
 import com.company.dto.PaymentsOfPointSaleDTO;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.List;
 
 public class WriteToFile {
+    final static Logger LOGGER = Logger.getLogger(WriteToFile.class);
 
     public  static void writeStreamToFile(String nameFile, List<PaymentsOfPointSaleDTO> paymentsOfPointSaleDTOList){
         try {
@@ -19,11 +22,11 @@ public class WriteToFile {
                 try {
                     outputStreamWriter.write(paymentsOfPointSaleDTO.toString() + "\n");
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e.getMessage());
                 }
             });
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 }
