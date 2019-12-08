@@ -32,7 +32,6 @@ public class PaymentsOfPointSaleDTO {
 
     @Override
     public String toString() {
-        System.out.println(Utils.convertDate(payment.getDateOperation()));
         return Utils.convertDate(payment.getDateOperation()) + " " + pointOfSale.getIdPointOfSale() + " "
                 + "" + payment.getUuidOperaions() + " " + payment.getSumOperation();
     }

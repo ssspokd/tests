@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class ReadFile {
-    final static Logger LOGGER = Logger.getLogger(ReadFile.class);
+    private final static Logger LOGGER = Logger.getLogger(ReadFile.class);
 
     private List<PointOfSale> pointOfSaleList = new ArrayList<>();
     private File file;

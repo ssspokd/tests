@@ -1,7 +1,6 @@
 package com.company.domain;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class Payment {
     private float sumOperation;

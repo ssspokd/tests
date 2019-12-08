@@ -17,7 +17,7 @@ import java.util.List;
 public class MainTest1 {
 
 
-    final static Logger LOGGER = Logger.getLogger(MainTest1.class);
+    private final static Logger LOGGER = Logger.getLogger(MainTest1.class);
 
     public static void main(String[] args) {
         if(args.length  != 3){
@@ -43,7 +43,7 @@ public class MainTest1 {
             PointOfSale pointOfSale = new PointOfSale(readFile.getRandomIDPointOfSales());
             paymentsOfPointSale.add(new PaymentsOfPointSaleDTO(payment,pointOfSale));
         }
-        new WriteToFile().writeStreamToFile(nameFileOutput, paymentsOfPointSale);
+        new WriteToFile(new File(nameFileOutput)).writeStreamToFile( paymentsOfPointSale);
     }
 
 }
