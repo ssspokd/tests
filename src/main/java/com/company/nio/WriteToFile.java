@@ -33,6 +33,8 @@ public class WriteToFile {
                     LOGGER.error(e.getMessage());
                 }
             });
+            outputStreamWriter.flush();
+            outputStreamWriter.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }

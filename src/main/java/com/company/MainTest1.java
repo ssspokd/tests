@@ -24,10 +24,9 @@ public class MainTest1 {
             LOGGER.error("missing count arguments, only 3\n " +
                     "1 argument: input file\n " +
                     "2 argument: count operations\n" +
-                    " 3 argument: outputfile" );
+                    "3 argument: outputfile" );
             return;
         }
-	// write your code here
         MainTest1 mainTest1 = new MainTest1();
         mainTest1.runTask1(args[0],Integer.valueOf(args[1]),args[2]);
     }
